@@ -1,0 +1,20 @@
+---
+# tasks file for ansible-role-postfix
+- name: Ensure postfix is installed.
+  yum: name=postfix state=installed
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure postfix is installed.
+  apt: name=postfix state=installed
+  when: ansible_os_family == 'Debian'
+
+- name: update hostname
+  command: postconf myhostname="{{ inventory_hostname }}"
+  notify: reload postfix
+
+- name: update destinations
+  command: postconf mydestination="{{ inventory_hostname }}, {{ inventory_hostname_short }}, localhost.localdomain, localhost"
+  notify: reload postfix
+
+- name: Ensure postfix is started and enabled at boot.
+  service: name=postfix state=started enabled=yes
