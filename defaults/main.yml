@@ -1,2 +1,6 @@
 ---
 # defaults file for ansible-role-postfix
+# force postfix smtp to use ipv4. this might be simplest solution
+# if you can't update Reverse DNS for ipv6. Since mail will be 
+# rejected by several providers (e.g. gmail)
+postfix_ipv4_downgrade: false

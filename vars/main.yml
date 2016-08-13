@@ -1,2 +1,3 @@
 ---
 # vars file for ansible-role-postfix
+postfix_conf_dir: /etc/postfix

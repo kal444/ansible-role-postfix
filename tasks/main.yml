@@ -16,5 +16,8 @@
   command: postconf mydestination="{{ inventory_hostname }}, {{ inventory_hostname_short }}, localhost.localdomain, localhost"
   notify: reload postfix
 
+- include: ipv4-downgrade.yml
+  when: postfix_ipv4_downgrade
+
 - name: Ensure postfix is started and enabled at boot.
   service: name=postfix state=started enabled=yes
