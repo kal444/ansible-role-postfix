@@ -2,7 +2,7 @@
 - name: downgrade smtp configuration to ipv4 only
   lineinfile:
     dest: "{{ postfix_conf_dir }}/master.cf"
-    regex: '^(smtp.*smtp)$'
+    regexp: '^(smtp.*smtp)$'
     line: '\g<1> -o inet_protocols=ipv4'
     state: present
   notify:
