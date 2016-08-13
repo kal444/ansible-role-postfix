@@ -4,6 +4,7 @@
     dest: "{{ postfix_conf_dir }}/master.cf"
     regexp: '^(smtp.*smtp)$'
     line: '\g<1> -o inet_protocols=ipv4'
+    backrefs: yes
     state: present
   notify:
     - reload postfix
