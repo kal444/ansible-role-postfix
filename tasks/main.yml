@@ -1,7 +1,7 @@
 ---
 # tasks file for ansible-role-postfix
 - name: Ensure postfix is installed.
-  yum: name=postfix state=installed
+  package: name=postfix state=installed
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure postfix is installed.
